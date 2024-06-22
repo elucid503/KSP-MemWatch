@@ -63,9 +63,9 @@ setInterval(async () => {
 
     const ServerInfo = await fetch(Config.InfoURL).then(res => res.json()).catch(err => console.error(err)) as ServerInfoResponse[] | undefined;
 
-    if (!ServerInfo) return;
+    const Server = (ServerInfo || [])[0];
 
-    const Server = ServerInfo[0];
+    if (!ServerInfo || !Server) return;
 
     const Players = Server.CurrentState.CurrentPlayers;
     const MemoryUsed = Server.CurrentState.BytesUsed;
