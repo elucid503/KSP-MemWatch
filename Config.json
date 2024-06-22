@@ -10,6 +10,8 @@
 
     },
 
+    "RoutineRestartMemoryLimit": 4.0,
+
     "MemoryWarningThreshold": 7.35,
     "MemoryLimitInGB": 7.85,
 
