@@ -1,0 +1,18 @@
+{
+
+    "Webhook": "https://discord.com/api/webhooks/1253922821575544842/TOkyzpQT-15_7VmhfBnir12nyDl5ojuThetIeyp3I8bZfWDMcUuaskq59jOd9y3ghFAM",
+    "InfoURL": "http://ksp.sprout.software",
+
+    "EmbedFooter": {
+
+        "text": "KSP MemWatch • A Sprout Subservice",
+        "icon_url": "https://sprout.software/cdn/Sprout_Logo_New.png"
+
+    },
+
+    "MemoryWarningThreshold": 7.5,
+    "MemoryLimitInGB": 8.0,
+
+    "RoutineLoggingTime": 3600000 
+
+}
