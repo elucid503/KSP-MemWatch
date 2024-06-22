@@ -10,8 +10,8 @@
 
     },
 
-    "MemoryWarningThreshold": 7.5,
-    "MemoryLimitInGB": 8.0,
+    "MemoryWarningThreshold": 7.35,
+    "MemoryLimitInGB": 7.85,
 
     "RoutineLoggingTime": 3600000 
 
