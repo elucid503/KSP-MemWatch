@@ -74,7 +74,7 @@ setInterval(async () => {
 
         PreviousAmtOfPlayers = 0;
 
-        exec("pm2 restart KspServer", (err, _stdout, stderr) => {
+        exec("pm2 restart KSPServer", (err, _stdout, stderr) => {
 
             if (err) Log("Restart Server: Error", err.message);
             if (stderr) Log("Restart Server: Error", stderr);
@@ -91,7 +91,7 @@ setInterval(async () => {
 
     if (MemoryUsed / (1024 ** 3) > Config.MemoryLimitInGB && Date.now() - LastRestartTime > RESTART_COOLDOWN) {
 
-        exec("pm2 restart KspServer", (err, _stdout, stderr) => {
+        exec("pm2 restart KSPServer", (err, _stdout, stderr) => {
 
             if (err) Log("Restart Server: Error", err.message);
             if (stderr) Log("Restart Server: Error", stderr);
