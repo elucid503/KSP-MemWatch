@@ -110,7 +110,7 @@ setInterval(async () => {
 
     else if (LastRoutineLog + Config.RoutineLoggingTime < Date.now()) {
 
-        Log("Routine Log", `Server is using ${(MemoryUsed / (1024 ** 3)).toFixed(3)}GB of memory and has ${Players.length} ${Players.length === 1 ? "player" : "players"}.`);
+        Log("Routine Log", `Server is using ${(MemoryUsed / (1024 ** 3)).toFixed(3)} GB of memory and has ${Players.length} ${Players.length === 1 ? "player" : "players"}.`);
 
         LastRoutineLog = Date.now();
 
