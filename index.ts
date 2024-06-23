@@ -56,6 +56,32 @@ interface ServerInfoResponse {
     
 }
 
+function Restart(): Promise<boolean> {
+
+    return new Promise((resolve, reject) => {
+
+        exec("net stop KSPServer", (err, _stdout, stderr) => {
+
+            if (err) { Log("Stop Server: Error", err.message); return resolve(false); } 
+            if (stderr) { Log("Stop Server: Error", stderr); return resolve(false); }
+
+        });
+
+        exec("net start KSPServer", (err, _stdout, stderr) => {
+
+            if (err) { Log("Start Server: Error", err.message); return resolve(false); }
+            if (stderr) { Log("Start Server: Error", stderr); return resolve(false); }
+
+        });
+
+        LastRestartTime = Date.now();
+
+        resolve(true);
+
+    });
+
+}
+
 let PreviousAmtOfPlayers: number = 0;
 let LastRoutineLog: number = 0;
 
@@ -74,14 +100,9 @@ setInterval(async () => {
 
         PreviousAmtOfPlayers = 0;
 
-        exec("pm2 restart KSPServer", (err, _stdout, stderr) => {
-
-            if (err) Log("Restart Server: Error", err.message);
-            if (stderr) Log("Restart Server: Error", stderr);
-
-            Log("Server Restart", `Routinely restarted the server due to player count and memory usage.`, 0xe874c1);
-
-        });
+        const Success = await Restart();
+        
+        if (Success) Log("Server Restart", `Restarted the server due to no players and high memory usage.`, 0xe87489);
 
         return;
 
@@ -91,15 +112,10 @@ setInterval(async () => {
 
     if (MemoryUsed / (1024 ** 3) > Config.MemoryLimitInGB && Date.now() - LastRestartTime > RESTART_COOLDOWN) {
 
-        exec("pm2 restart KSPServer", (err, _stdout, stderr) => {
+        const Success = await Restart();
 
-            if (err) Log("Restart Server: Error", err.message);
-            if (stderr) Log("Restart Server: Error", stderr);
-
-            Log("Server Restart", `Restarted the server due to high memory usage.`, 0xe87489);
-
-        });
-
+        if (Success) Log("Server Restart", `Restarted the server due to high memory usage.`, 0xe87489);
+        
     }
 
     else if (MemoryUsed / (1024 ** 3) > Config.MemoryWarningThreshold) {
