@@ -67,16 +67,20 @@ function Restart(): Promise<boolean> {
 
         });
 
-        exec("net start KSPServer", (err, _stdout, stderr) => {
+        setTimeout(() => {
 
-            if (err) { Log("Start Server: Error", err.message); return resolve(false); }
-            if (stderr) { Log("Start Server: Error", stderr); return resolve(false); }
+            exec("net start KSPServer", (err, _stdout, stderr) => {
 
-        });
+                if (err) { Log("Start Server: Error", err.message); return resolve(false); }
+                if (stderr) { Log("Start Server: Error", stderr); return resolve(false); }
 
-        LastRestartTime = Date.now();
+            });
 
-        resolve(true);
+            LastRestartTime = Date.now();
+
+            resolve(true);
+
+        }, 5000);
 
     });
 
